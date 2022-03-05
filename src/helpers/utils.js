@@ -69,3 +69,16 @@ export const addYearColumn = (data, newYear) => {
   temp.columns.push(objYear);
   return temp;
 };
+
+export const makeDataForSelfinput = (columns) => {
+  const data = [{}];
+  data.columns = [];
+  for (let column of columns) {
+    data.columns.push({
+      Header: column,
+      accessor: column,
+    });
+    data[0][column] = "-";
+  }
+  return data;
+};

@@ -2,11 +2,19 @@ import classes from "./InputTypeSelectionMenu.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 // REDUX STUFFS
-import { SELF_INPUT_DATA } from "../../constants/actionTypes";
+// import { SELF_INPUT_DATA_COUNTRY } from "../../constants/actionTypes";
+// actions
+import { selfInputData } from "../../actions/data";
+
 // COMPONENTS
 import DropFileInput from "./dropFileInput/";
+import LevelTwoCmsaType from "./levelTwoCmsaType/";
 // import Table from "./Table";
-const InputTypeSelectionMenu = ({ cmsaType }) => {
+const InputTypeSelectionMenu = ({
+  cmsaType,
+  isWorldData = false,
+  isLevelTwo = false,
+}) => {
   // REDUX STUFFS
   const dispatch = useDispatch();
   const [isMenu, setIsMenu] = useState(true);
@@ -24,7 +32,7 @@ const InputTypeSelectionMenu = ({ cmsaType }) => {
     setInputType(false);
   };
   const selfInput = () => {
-    dispatch({ type: SELF_INPUT_DATA, cmsaType });
+    if (!isLevelTwo) dispatch(selfInputData(cmsaType, isWorldData));
     setMenu(false);
     setInputType(true);
   };
@@ -40,7 +48,11 @@ const InputTypeSelectionMenu = ({ cmsaType }) => {
           </button>
         </div>
       ) : isSelf ? (
-        <h1>SIKE</h1>
+        isLevelTwo ? (
+          <LevelTwoCmsaType cmsaType={cmsaType} />
+        ) : (
+          <h1>SIKE</h1>
+        )
       ) : (
         <DropFileInput />
       )}

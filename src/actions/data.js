@@ -2,14 +2,18 @@ import * as api from "../api";
 import {
   READ_CSV,
   READ_CSV_ERROR,
-  SELF_INPUT_DATA,
+  SELF_INPUT_DATA_COUNTRY,
   EDIT_DATA,
   ADD_ROW_COUNTRY,
   ADD_YEAR_COUNTRY,
 } from "../constants/actionTypes";
 
 // helper functions
-import { editCell, addYearColumn } from "../helpers/utils";
+import {
+  editCell,
+  addYearColumn,
+  makeDataForSelfinput,
+} from "../helpers/utils";
 
 export const parseCsv = (fileObj) => async (dispatch) => {
   try {
@@ -69,6 +73,37 @@ export const addingYearColumn =
       const temp = await addYearColumn(data, newYear);
       // console.log(temp);
       if (isCountry) dispatch({ type: ADD_YEAR_COUNTRY, newData: temp });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+export const selfInputData =
+  (cmsaType, isWorldData, isCommodity = true) =>
+  async (dispatch) => {
+    try {
+      let data = [];
+      if (!isWorldData) {
+        if (cmsaType === 3) {
+          console.log(cmsaType, "THREE", "action here");
+        } else if (cmsaType === 2) {
+          console.log(cmsaType, "TWO", "action here");
+          if (isCommodity) {
+            const columns = ["country", "commodity"];
+            data = await makeDataForSelfinput(columns);
+            console.log(data);
+          } else {
+            const columns = ["country", "region"];
+            data = await makeDataForSelfinput(columns);
+            console.log(data);
+          }
+        } else if (cmsaType === 1) {
+          const columns = ["country"];
+          data = await makeDataForSelfinput(columns);
+          console.log(cmsaType, "ONE", "action here");
+        }
+        dispatch({ type: SELF_INPUT_DATA_COUNTRY, payload: data });
+      }
     } catch (error) {
       console.log(error);
     }

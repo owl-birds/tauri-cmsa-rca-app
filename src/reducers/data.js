@@ -2,7 +2,7 @@ import {
   READ_CSV,
   CLEAR_STATE,
   EDIT_DATA,
-  SELF_INPUT_DATA,
+  SELF_INPUT_DATA_COUNTRY,
   ADD_ROW_COUNTRY,
   ADD_YEAR_COUNTRY,
 } from "../constants/actionTypes";
@@ -33,11 +33,13 @@ const data = (data = [], action) => {
       //   action.columnName
       // );
       return { ...data, data: action.editedData };
-    case SELF_INPUT_DATA:
-      if (action.cmsaType === 3) {
-        console.log(action.cmsaType, "THREE");
-      }
-      return data;
+    case SELF_INPUT_DATA_COUNTRY:
+      return {
+        ...data,
+        data: action.payload,
+        isLoaded: true,
+        message: "SELF INPUT DATA COUNTRY",
+      };
     case ADD_ROW_COUNTRY:
       return { ...data, data: action.addedData };
     case ADD_YEAR_COUNTRY:

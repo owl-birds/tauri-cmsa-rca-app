@@ -1,4 +1,5 @@
-import classes from "./style.module.css";
+import classes from "./style/style.module.css";
+
 import { Link } from "react-router-dom";
 const CmsaNav = () => {
   return (

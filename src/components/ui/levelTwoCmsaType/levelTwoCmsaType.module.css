@@ -1,14 +1,10 @@
-.selectionMenuBox {
-  height: 100%;
-  display: grid;
-  justify-content: center;
+.title {
+  text-align: center;
 }
-.buttonsBox {
+.buttonBox {
   display: grid;
-  align-items: top;
-  gap: 4rem;
   grid-template-columns: repeat(2, 1fr);
-  margin-top: 50px;
+  gap: 4rem;
 }
 .button {
   width: 200px;
@@ -21,6 +17,6 @@
   border: 0.5px solid rgb(62, 62, 63);
 }
 .button:hover {
-  cursor: pointer;
   background-color: rgb(233, 233, 233);
+  cursor: pointer;
 }

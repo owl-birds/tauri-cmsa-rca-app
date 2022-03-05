@@ -45,7 +45,7 @@ const OneLevel = () => {
       <div>
         <h1 className={classes.title}>ONE LEVEL</h1>
         {/* {state.isLoaded ? null : <DropFileInput />} */}
-        {state.isLoaded ? null : <InputTypeSelectionMenu />}
+        {state.isLoaded ? null : <InputTypeSelectionMenu cmsaType={1} />}
       </div>
       {state.isLoaded ? (
         <div className={classes.tableWrapper}>

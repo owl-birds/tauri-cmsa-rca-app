@@ -48,13 +48,13 @@ const OneLevelMenu = ({ yearList }) => {
             selectRef={firstYearRef}
             optionList={firstYear}
             label={"Tahun Pertama"}
-            onChange={onChangeHandlerFirst}
+            onChange={() => onChangeHandlerFirst()}
           />
           <Select
             selectRef={secondYearRef}
             optionList={secondYear}
             label={"Tahun Kedua"}
-            onChange={onChangeHandlerSecond}
+            onChange={() => onChangeHandlerSecond()}
           />
         </div>
         <button className={classes.btn} type="submit">

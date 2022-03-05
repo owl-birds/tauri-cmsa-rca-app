@@ -45,7 +45,13 @@ const TwoLevel = () => {
       <div>
         <h1 className={classes.title}>TWO LEVEL</h1>
         {/* {state.isLoaded ? null : <DropFileInput />} */}
-        {state.isLoaded ? null : <InputTypeSelectionMenu />}
+        {state.isLoaded ? null : (
+          <InputTypeSelectionMenu
+            cmsaType={2}
+            isWorldData={false}
+            isLevelTwo={true}
+          />
+        )}
       </div>
       {state.isLoaded ? (
         <div className={classes.tableWrapper}>
