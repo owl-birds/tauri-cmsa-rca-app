@@ -28,7 +28,8 @@ export const editCell = (
     return { ...row };
   });
   temp.columns = data.columns;
-  temp[index][columnName] = editedValue;
+  if (!isNaN(+columnName)) temp[index][columnName] = +editedValue;
+  else temp[index][columnName] = editedValue;
   return temp;
 };
 export const readCsv = async (fileObj) => {
@@ -38,4 +39,33 @@ export const readCsv = async (fileObj) => {
     return event.target.result;
   };
   reader.readAsText(fileObj);
+};
+export const addRow = (data, index) => {
+  const newRow = {};
+  const temp = data.map((row) => {
+    return { ...row };
+  });
+  temp.columns = data.columns;
+  if (temp.columns)
+    for (let col of temp.columns) {
+      newRow[col["Header"]] = "-";
+    }
+  for (let i = 0; i < temp.length; i += 1) {
+    if (i === index) {
+      if (i !== temp.length - 1) temp.splice(index, 0, newRow);
+      else temp.push(newRow);
+    }
+  }
+  return temp;
+};
+export const addYearColumn = (data, newYear) => {
+  const temp = data.map((row) => {
+    const tempRow = { ...row };
+    tempRow[newYear] = "-";
+    return tempRow;
+  });
+  temp.columns = [...data.columns];
+  const objYear = { Header: newYear, accessor: newYear };
+  temp.columns.push(objYear);
+  return temp;
 };

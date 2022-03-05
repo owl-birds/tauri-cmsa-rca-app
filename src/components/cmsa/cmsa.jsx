@@ -1,13 +1,13 @@
-import classes from "./Home.module.css";
+import classes from "./cmsa.module.css";
 import { useSelector } from "react-redux";
-import HomeNav from "../layouts/HomeNav";
-const Home = () => {
+import CmsaNav from "../layouts/cmsaNav";
+const Cmsa = () => {
   const data = useSelector((state) => state.data);
   console.log(data);
   return (
     <main className={classes.content}>
-      <HomeNav />
+      <CmsaNav />
     </main>
   );
 };
-export default Home;
+export default Cmsa;

@@ -3,6 +3,8 @@ import {
   CLEAR_STATE,
   EDIT_DATA,
   SELF_INPUT_DATA,
+  ADD_ROW_COUNTRY,
+  ADD_YEAR_COUNTRY,
 } from "../constants/actionTypes";
 
 const data = (data = [], action) => {
@@ -36,6 +38,12 @@ const data = (data = [], action) => {
         console.log(action.cmsaType, "THREE");
       }
       return data;
+    case ADD_ROW_COUNTRY:
+      return { ...data, data: action.addedData };
+    case ADD_YEAR_COUNTRY:
+      // console.log(action.newData);
+      // return data;
+      return { ...data, data: action.newData };
     default:
       if (data.data)
         // if data still exist

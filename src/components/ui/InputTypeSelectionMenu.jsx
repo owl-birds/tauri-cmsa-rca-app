@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 // REDUX STUFFS
 import { SELF_INPUT_DATA } from "../../constants/actionTypes";
 // COMPONENTS
-import DropFileInput from "./DropFileInput";
-import Table from "./Table";
+import DropFileInput from "./dropFileInput/";
+// import Table from "./Table";
 const InputTypeSelectionMenu = ({ cmsaType }) => {
   // REDUX STUFFS
   const dispatch = useDispatch();
@@ -32,8 +32,12 @@ const InputTypeSelectionMenu = ({ cmsaType }) => {
     <section className={classes.selectionMenuBox}>
       {isMenu ? (
         <div className={classes.buttonsBox}>
-          <button onClick={() => fileInput()}>Input with .CSV file</button>
-          <button onClick={() => selfInput()}>Self Input</button>
+          <button className={classes.button} onClick={() => fileInput()}>
+            Input with .CSV file
+          </button>
+          <button className={classes.button} onClick={() => selfInput()}>
+            Self Input
+          </button>
         </div>
       ) : isSelf ? (
         <h1>SIKE</h1>

@@ -1,13 +1,18 @@
 import classes from "./OneLevel.module.css";
 // components
-import DropFileInput from "../ui/DropFileInput";
-import Table from "../ui/Table";
+// import DropFileInput from "../ui/DropFileInput";
+import InputTypeSelectionMenu from "../ui/InputTypeSelectionMenu";
+import Table from "../ui/table/";
 import OneLevelMenu from "../ui/OneLevelMenu";
+import TableMenu from "../ui/tableMenu/tableMenu";
 //
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-// STATE CONSTANT ACTION
-import { CLEAR_STATE } from "../../constants/actionTypes";
+// // actions
+// import { addingRow } from "../../actions/data";
+
+// // STATE CONSTANT ACTION
+// import { CLEAR_STATE } from "../../constants/actionTypes";
 
 // FORMULA
 import { one_level_all } from "../../helpers/cmsa-one-level";
@@ -15,7 +20,6 @@ import { one_level_all } from "../../helpers/cmsa-one-level";
 import { uniqueRow, uniqueYear } from "../../helpers/utils";
 
 const OneLevel = () => {
-  const dispatch = useDispatch();
   // ?STATES REDUX
   const state = useSelector((state) => state.data);
   const ui = useSelector((state) => state.ui);
@@ -36,20 +40,16 @@ const OneLevel = () => {
     : null;
   // console.log(oneLevelResult);
   const uniqueYearList = state.isLoaded ? uniqueYear(state.data) : null;
-  // console.log(uniqueYearList);
-  const resetHandler = () => {
-    dispatch({ type: CLEAR_STATE });
-  };
   return (
     <main className={classes.content}>
       <div>
         <h1 className={classes.title}>ONE LEVEL</h1>
-        {state.isLoaded ? null : <DropFileInput />}
+        {/* {state.isLoaded ? null : <DropFileInput />} */}
+        {state.isLoaded ? null : <InputTypeSelectionMenu />}
       </div>
-      {/* <div className={classes.tableWrapper}> */}
       {state.isLoaded ? (
         <div className={classes.tableWrapper}>
-          <button onClick={() => resetHandler()}>Reset</button>
+          <TableMenu data={state.data} />
           <Table
             isEditAble={true}
             columns={state.data.columns}
@@ -64,7 +64,6 @@ const OneLevel = () => {
           ) : null}
         </div>
       ) : null}
-      {/* </div> */}
     </main>
   );
 };

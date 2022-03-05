@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 // REDUX STUFFS
 import { useDispatch } from "react-redux";
 // actions
-import { editData } from "../../actions/data";
+import { editData } from "../../../actions/data";
 // import { EDIT_DATA } from "../../constants/actionTypes";
 const Cell = ({ data, value, index, columnName }) => {
   //   VAR

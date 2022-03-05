@@ -4,18 +4,19 @@ import {
   READ_CSV_ERROR,
   SELF_INPUT_DATA,
   EDIT_DATA,
+  ADD_ROW_COUNTRY,
+  ADD_YEAR_COUNTRY,
 } from "../constants/actionTypes";
 
 // helper functions
-import { editCell } from "../helpers/utils";
+import { editCell, addYearColumn } from "../helpers/utils";
 
 export const parseCsv = (fileObj) => async (dispatch) => {
   try {
-    console.log(fileObj);
+    // console.log(fileObj);
     const reader = new FileReader();
     reader.onload = (event) => {
       const data = api.textToCsv(event.target.result);
-      console.log(data);
       const columns = data.columns.map((col) => {
         return {
           Header: col,
@@ -42,9 +43,32 @@ export const parseCsv = (fileObj) => async (dispatch) => {
 export const editData =
   (data, index, columnName, editedValue) => async (dispatch) => {
     try {
-      const temp = editCell(data, editedValue, index, columnName);
+      const temp = await editCell(data, editedValue, index, columnName);
       // console.log(temp);
       dispatch({ type: EDIT_DATA, editedData: temp });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+export const addingRow =
+  (data, isCountry = true) =>
+  async (dispatch) => {
+    try {
+      const temp = await api.addingRow(data);
+      if (isCountry) dispatch({ type: ADD_ROW_COUNTRY, addedData: temp });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+export const addingYearColumn =
+  (data, newYear, isCountry = true) =>
+  async (dispatch) => {
+    try {
+      const temp = await addYearColumn(data, newYear);
+      // console.log(temp);
+      if (isCountry) dispatch({ type: ADD_YEAR_COUNTRY, newData: temp });
     } catch (error) {
       console.log(error);
     }

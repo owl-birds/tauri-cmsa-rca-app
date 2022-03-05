@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useTable } from "react-table";
-import Cell from "./Cell";
+import Cell from "../cell/";
 const Styles = styled.div`
   padding: 1rem;
 
@@ -27,6 +27,19 @@ const Styles = styled.div`
         border-right: 0;
       }
     }
+    .delete {
+      border: 0.5px solid #db2e2e;
+      font-size: 1rem;
+      margin-left: 4px;
+      padding: 0 4px;
+      border-radius: 3px;
+      color: #db2e2e;
+    }
+    .delete:hover {
+      background-color: #db2e2e;
+      color: #fff;
+      cursor: pointer;
+    }
   }
 `;
 const Table = ({ columns, data, isEditAble = false }) => {
@@ -36,8 +49,14 @@ const Table = ({ columns, data, isEditAble = false }) => {
       columns,
       data,
     });
-
+  // headerGroups.map((headerGroup) => console.log(headerGroup.headers));
+  // console.log(headerGroups[0].headers[0].Header);
   // Render the UI for your table
+
+  // removing a row or a column in the table
+  const removeColumn = (columnName) => {
+    console.log(columnName);
+  };
   return (
     <Styles>
       <table {...getTableProps()}>
@@ -45,7 +64,17 @@ const Table = ({ columns, data, isEditAble = false }) => {
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                <th {...column.getHeaderProps()}>
+                  {column.render("Header")}{" "}
+                  {isNaN(+column.Header) ? null : (
+                    <span
+                      onClick={() => removeColumn(column.Header)}
+                      className="delete"
+                    >
+                      X
+                    </span>
+                  )}
+                </th>
               ))}
             </tr>
           ))}

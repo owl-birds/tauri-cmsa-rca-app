@@ -1,4 +1,16 @@
 .selectionMenuBox {
+  height: 100%;
+  display: grid;
+  justify-content: center;
 }
 .buttonsBox {
+  display: grid;
+  align-items: top;
+  gap: 4rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 50px;
+}
+.button {
+  width: 200px;
+  height: 100px;
 }

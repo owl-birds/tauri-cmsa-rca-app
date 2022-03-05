@@ -7,6 +7,7 @@ import { OPTIONS_UI_TWO_LEVEL } from "../../constants/actionTypes";
 // components
 import Select from "./Select";
 import RadioInput from "./RadioInput";
+
 const TwoLevelMenu = ({ yearList }) => {
   // REF
   const firstYearRef = useRef(null);

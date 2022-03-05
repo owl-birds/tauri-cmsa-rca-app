@@ -1,24 +1,24 @@
 import classes from "./style.module.css";
 import { Link } from "react-router-dom";
-const HomeNav = () => {
+const CmsaNav = () => {
   return (
     <section className={classes.homeNav}>
       <div className={classes.navBox}>
-        <Link className={classes.homeNavLink} to="/one-level">
+        <Link className={classes.homeNavLink} to="/cmsa/one-level">
           One Level Decomposition
         </Link>
       </div>
       <div className={classes.navBox}>
-        <Link className={classes.homeNavLink} to="/two-level">
+        <Link className={classes.homeNavLink} to="/cmsa/two-level">
           Two Level Decomposition
         </Link>
       </div>
       <div className={classes.navBox}>
-        <Link className={classes.homeNavLink} to="/three-level">
+        <Link className={classes.homeNavLink} to="/cmsa/three-level">
           Three Level Decomposition
         </Link>
       </div>
     </section>
   );
 };
-export default HomeNav;
+export default CmsaNav;

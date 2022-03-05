@@ -1,20 +1,27 @@
+// style
 import classes from "./TwoLevel.module.css";
+
 // COMPONENTS
-import DropFileInput from "../ui/DropFileInput";
-import Table from "../ui/Table";
+// import DropFileInput from "../ui/DropFileInput";
+import InputTypeSelectionMenu from "../ui/InputTypeSelectionMenu";
+import Table from "../ui/table/";
 import TwoLevelMenu from "../ui/TwoLevelMenu";
+import TableMenu from "../ui/tableMenu/";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-// STATE CONSTANT ACTION
-import { CLEAR_STATE } from "../../constants/actionTypes";
+// // actions
+// import { addingRow } from "../../actions/data";
+
+// // STATE CONSTANT ACTION
+// import { CLEAR_STATE } from "../../constants/actionTypes";
 
 // FORMULA
 import { two_level_all } from "../../helpers/cmsa-two-level";
 // UTILS
 import { uniqueRow, uniqueYear } from "../../helpers/utils";
 const TwoLevel = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const state = useSelector((state) => state.data);
   const ui = useSelector((state) => state.ui);
   console.log(state);
@@ -33,20 +40,16 @@ const TwoLevel = () => {
     : null;
   // console.log(ui.isOptionSelected);
   const uniqueYearList = state.isLoaded ? uniqueYear(state.data) : null;
-  // console.log(uniqueYearList);
-  const resetHandler = () => {
-    dispatch({ type: CLEAR_STATE });
-  };
-
   return (
     <main className={classes.content}>
       <div>
         <h1 className={classes.title}>TWO LEVEL</h1>
-        {state.isLoaded ? null : <DropFileInput />}
+        {/* {state.isLoaded ? null : <DropFileInput />} */}
+        {state.isLoaded ? null : <InputTypeSelectionMenu />}
       </div>
       {state.isLoaded ? (
         <div className={classes.tableWrapper}>
-          <button onClick={() => resetHandler()}>Reset</button>
+          <TableMenu data={state.data} />
           <Table
             isEditAble={true}
             columns={state.data.columns}

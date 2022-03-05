@@ -3,10 +3,10 @@ import classes from "./DropFileInput.module.css";
 // dispatch
 import { useDispatch } from "react-redux";
 // actions
-import { parseCsv } from "../../actions/data";
+import { parseCsv } from "../../../actions/data";
 
 // utils
-import { readCsv } from "../../helpers/utils.js";
+// import { readCsv } from "../../helpers/utils.js";
 
 const DropFileInput = () => {
   const dispatch = useDispatch();
