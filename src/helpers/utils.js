@@ -14,9 +14,11 @@ export const round = (num) => {
   return +(Math.round(num + "e+2") + "e-2");
 };
 export const uniqueYear = (data) => {
-  return Object.keys(data[0]).filter(
+  const temp = Object.keys(data[0]).filter(
     (col) => col !== "country" && col !== "commodity" && col !== "region"
   );
+  const result = temp.map((year) => +year);
+  return result;
 };
 export const editCell = (
   data = [],
@@ -81,4 +83,10 @@ export const makeDataForSelfinput = (columns) => {
     data[0][column] = "-";
   }
   return data;
+};
+
+export const sortingNumArr = (numArr) => {
+  const temp = [...numArr];
+  temp.sort((a, b) => a - b);
+  return temp;
 };

@@ -2,7 +2,11 @@ import classes from "./tableMenu.module.css";
 // reduxsss
 import { useDispatch } from "react-redux";
 // constant fro redux
-import { CLEAR_STATE } from "../../../constants/actionTypes";
+import {
+  CLEAR_STATE,
+  ALL_YEARS,
+  RESET_YEARS,
+} from "../../../constants/actionTypes";
 // actions
 import { addingRow, addingYearColumn } from "../../../actions/data";
 // utils
@@ -11,6 +15,7 @@ const TableMenu = ({ data }) => {
   const dispatch = useDispatch();
   const resetHandler = () => {
     dispatch({ type: CLEAR_STATE });
+    dispatch({ type: RESET_YEARS });
   };
   const addARow = () => {
     dispatch(addingRow(data));
@@ -25,7 +30,8 @@ const TableMenu = ({ data }) => {
       newYearCol.classList.add(classes.wrongInput);
     } else {
       newYearCol.classList.remove(classes.wrongInput);
-      console.log(newYearCol.value);
+      // console.log(newYearCol.value);
+      dispatch({ type: ALL_YEARS, allYears: newYearCol.value });
       dispatch(addingYearColumn(data, newYearCol.value));
     }
   };

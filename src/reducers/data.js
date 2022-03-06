@@ -14,6 +14,7 @@ const data = (data = [], action) => {
         ...data,
         data: action.payload,
         isLoaded: true,
+        isSelfInput: false,
         message: "DATA HAD BEEN READ",
       };
     case CLEAR_STATE:
@@ -38,6 +39,7 @@ const data = (data = [], action) => {
         ...data,
         data: action.payload,
         isLoaded: true,
+        isSelfInput: true,
         message: "SELF INPUT DATA COUNTRY",
       };
     case ADD_ROW_COUNTRY:

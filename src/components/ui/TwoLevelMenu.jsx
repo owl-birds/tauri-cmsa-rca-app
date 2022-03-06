@@ -7,8 +7,17 @@ import { OPTIONS_UI_TWO_LEVEL } from "../../constants/actionTypes";
 // components
 import Select from "./Select";
 import RadioInput from "./RadioInput";
+// utils
+import { sortingNumArr } from "../../helpers/utils";
 
 const TwoLevelMenu = ({ yearList }) => {
+  // console.log("TwoLevelMenu HERE");
+  // console.log("2level_menu", yearList);
+  // REDUX STATE  for year
+  // const yearState = useSelector((state) => state.yearList);
+  // const { isSelfInput } = useSelector((state) => state.data);
+  // console.log(yearState);
+  // console.log(isSelfInput);
   // REF
   const firstYearRef = useRef(null);
   const secondYearRef = useRef(null);
@@ -16,6 +25,9 @@ const TwoLevelMenu = ({ yearList }) => {
   // STATE
   const [firstYear, setFirstYear] = useState(yearList);
   const [secondYear, setSecondYear] = useState(yearList);
+  // console.log(sortingNumArr(secondYear));
+  // console.log(sortingNumArr(firstYear));
+  // console.log(sortingNumArr([23, 43, 12, 34, 54, 123]));
   // DISPATHC (REDUX)
   const dispatch = useDispatch();
   const onSubmitHandler = (event) => {
@@ -50,13 +62,13 @@ const TwoLevelMenu = ({ yearList }) => {
           <h1>Pilih Tahun</h1>
           <Select
             selectRef={firstYearRef}
-            optionList={firstYear}
+            optionList={sortingNumArr(firstYear)}
             label={"Tahun Pertama"}
             onChange={onChangeHandlerFirst}
           />
           <Select
             selectRef={secondYearRef}
-            optionList={secondYear}
+            optionList={sortingNumArr(secondYear)}
             label={"Tahun Kedua"}
             onChange={onChangeHandlerSecond}
           />

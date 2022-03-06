@@ -1,6 +1,9 @@
 // style
 import classes from "./TwoLevel.module.css";
 
+// react
+// import { useEffect } from "react";
+
 // COMPONENTS
 // import DropFileInput from "../ui/DropFileInput";
 import InputTypeSelectionMenu from "../ui/InputTypeSelectionMenu";
@@ -14,7 +17,7 @@ import { useSelector } from "react-redux";
 // import { addingRow } from "../../actions/data";
 
 // // STATE CONSTANT ACTION
-// import { CLEAR_STATE } from "../../constants/actionTypes";
+// import { ALL_YEARS } from "../../constants/actionTypes";
 
 // FORMULA
 import { two_level_all } from "../../helpers/cmsa-two-level";
@@ -24,7 +27,9 @@ const TwoLevel = () => {
   // const dispatch = useDispatch();
   const state = useSelector((state) => state.data);
   const ui = useSelector((state) => state.ui);
+  const yearState = useSelector((state) => state.yearList);
   console.log(state);
+  console.log(yearState);
   // console.log(ui);
   const twoLevelResult = state.isLoaded
     ? ui.isOptionSelected
@@ -39,7 +44,16 @@ const TwoLevel = () => {
       : null
     : null;
   // console.log(ui.isOptionSelected);
-  const uniqueYearList = state.isLoaded ? uniqueYear(state.data) : null;
+  const uniqueYearList = state.isLoaded
+    ? state.isSelfInput
+      ? yearState.allYears
+      : uniqueYear(state.data)
+    : [];
+  console.log(uniqueYearList);
+  // console.log(state.data);
+  // useEffect(() => {
+  //   dispatch({ type: ALL_YEARS, allYears: uniqueYearList });
+  // }, [uniqueYearList]);
   return (
     <main className={classes.content}>
       <div>
