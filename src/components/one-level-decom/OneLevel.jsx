@@ -23,6 +23,7 @@ const OneLevel = () => {
   // ?STATES REDUX
   const state = useSelector((state) => state.data);
   const ui = useSelector((state) => state.ui);
+  const yearState = useSelector((state) => state.yearList);
   // console.log(state);
   // console.log(ui);
 
@@ -39,7 +40,12 @@ const OneLevel = () => {
       : null
     : null;
   // console.log(oneLevelResult);
-  const uniqueYearList = state.isLoaded ? uniqueYear(state.data) : null;
+  const uniqueYearList = state.isLoaded
+    ? state.isSelfInput
+      ? yearState.allYears
+      : uniqueYear(state.data)
+    : [];
+  // console.log(uniqueYearList);
   return (
     <main className={classes.content}>
       <div>

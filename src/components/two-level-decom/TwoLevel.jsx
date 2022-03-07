@@ -29,7 +29,7 @@ const TwoLevel = () => {
   const ui = useSelector((state) => state.ui);
   const yearState = useSelector((state) => state.yearList);
   console.log(state);
-  console.log(yearState);
+  // console.log(yearState);
   // console.log(ui);
   const twoLevelResult = state.isLoaded
     ? ui.isOptionSelected
@@ -49,7 +49,7 @@ const TwoLevel = () => {
       ? yearState.allYears
       : uniqueYear(state.data)
     : [];
-  console.log(uniqueYearList);
+  // console.log(uniqueYearList);
   // console.log(state.data);
   // useEffect(() => {
   //   dispatch({ type: ALL_YEARS, allYears: uniqueYearList });

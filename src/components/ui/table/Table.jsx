@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useTable } from "react-table";
+// cOMPONENTS
 import Cell from "../cell/";
+// action
+
 const Styles = styled.div`
   padding: 1rem;
 

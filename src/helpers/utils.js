@@ -90,3 +90,5 @@ export const sortingNumArr = (numArr) => {
   temp.sort((a, b) => a - b);
   return temp;
 };
+
+export const deleteCol = (data, colName) => {};

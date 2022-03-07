@@ -6,6 +6,7 @@ import {
   EDIT_DATA,
   ADD_ROW_COUNTRY,
   ADD_YEAR_COUNTRY,
+  DELETE_YEAR_COUNTRY,
 } from "../constants/actionTypes";
 
 // helper functions
