@@ -91,4 +91,23 @@ export const sortingNumArr = (numArr) => {
   return temp;
 };
 
-export const deleteCol = (data, colName) => {};
+export const deleteCol = (data, colName) => {
+  const columnList = Object.keys(data[0]);
+  columnList.splice(columnList.indexOf(colName), 1);
+  const resultTemp = [];
+  for (let row of data) {
+    let temp = {};
+    for (let col of columnList) {
+      // if (col === colName) continue;
+      temp[col] = row[col];
+    }
+    resultTemp.push(temp);
+  }
+  let tempColumnList = [];
+  for (let col of columnList) {
+    let tempObj = { Header: col, accessor: col };
+    tempColumnList.push(tempObj);
+  }
+  resultTemp.columns = tempColumnList;
+  return resultTemp;
+};

@@ -60,6 +60,7 @@ const OneLevel = () => {
             isEditAble={true}
             columns={state.data.columns}
             data={state.data}
+            isSelfInput={state.isSelfInput}
           />
           <OneLevelMenu yearList={uniqueYearList} />
           {ui.isOptionSelected ? (

@@ -50,6 +50,7 @@ const TwoLevel = () => {
       : uniqueYear(state.data)
     : [];
   // console.log(uniqueYearList);
+  // console.log(yearState.allYears);
   // console.log(state.data);
   // useEffect(() => {
   //   dispatch({ type: ALL_YEARS, allYears: uniqueYearList });
@@ -74,6 +75,7 @@ const TwoLevel = () => {
             isEditAble={true}
             columns={state.data.columns}
             data={state.data}
+            isSelfInput={state.isSelfInput}
           />
           <TwoLevelMenu yearList={uniqueYearList} />
           {ui.isOptionSelected ? (

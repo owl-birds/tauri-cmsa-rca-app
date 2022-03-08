@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import { useTable } from "react-table";
+// redux
+import { useDispatch } from "react-redux";
 // cOMPONENTS
 import Cell from "../cell/";
 // action
+import { deleteColYear } from "../../../actions/data";
 
 const Styles = styled.div`
   padding: 1rem;
@@ -45,7 +48,15 @@ const Styles = styled.div`
     }
   }
 `;
-const Table = ({ columns, data, isEditAble = false }) => {
+const Table = ({
+  columns,
+  data,
+  isEditAble = false,
+  isWorldData = false,
+  isSelfInput = false,
+}) => {
+  // REDUX STUFFS
+  const dispatch = useDispatch();
   // Use the state and functions returned from useTable to build your UI
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
@@ -58,7 +69,10 @@ const Table = ({ columns, data, isEditAble = false }) => {
 
   // removing a row or a column in the table
   const removeColumn = (columnName) => {
-    console.log(columnName);
+    // removing year col
+    // console.log(columnName);
+    if (!isSelfInput) dispatch(deleteColYear(data, columnName, isWorldData));
+    else dispatch(deleteColYear(data, columnName, isWorldData, isSelfInput));
   };
   return (
     <Styles>

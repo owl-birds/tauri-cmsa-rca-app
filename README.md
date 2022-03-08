@@ -7,3 +7,12 @@ and go to the directory where you unzipped it
         npm run tauri dev
     to build
         npm run tauri build
+
+there are so many th9ings that need to be reconsidered
+
+such as
+
+1. the menu before calculating cmsa
+   a. option to choose year is still buggy
+   need to be fixed although not on the top list of priority
+   b. add some input to indicate the world data

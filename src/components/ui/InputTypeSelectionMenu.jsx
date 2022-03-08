@@ -20,6 +20,7 @@ const InputTypeSelectionMenu = ({
   const [isMenu, setIsMenu] = useState(true);
   const [isSelf, setIsSelf] = useState(false);
   console.log("selection menu rendering");
+  // console.log(isWorldData);
   // func related to state
   const setMenu = (value = true) => {
     setIsMenu(() => value);
@@ -54,7 +55,7 @@ const InputTypeSelectionMenu = ({
           <h1>SIKE</h1>
         )
       ) : (
-        <DropFileInput />
+        <DropFileInput isWorldData={isWorldData} />
       )}
     </section>
   );

@@ -11,7 +11,7 @@ import {
 import { addingRow, addingYearColumn } from "../../../actions/data";
 // utils
 import { uniqueYear } from "../../../helpers/utils";
-const TableMenu = ({ data }) => {
+const TableMenu = ({ data, isWorldData = false }) => {
   const dispatch = useDispatch();
   const resetHandler = () => {
     dispatch({ type: CLEAR_STATE });

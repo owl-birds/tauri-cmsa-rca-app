@@ -4,6 +4,7 @@ import {
   UPDATE_SECOND_YEAR,
   ALL_YEARS,
   RESET_YEARS,
+  REMOVE_YEAR_ALL_YEARS,
 } from "../constants/actionTypes";
 
 const yearList = (yearList = {}, action) => {
@@ -31,6 +32,9 @@ const yearList = (yearList = {}, action) => {
       return {
         ...yearList,
       };
+    case REMOVE_YEAR_ALL_YEARS:
+      yearList.allYears.splice(yearList.allYears.indexOf(+action.year), 1);
+      return { ...yearList };
     default:
       if (!yearList.allYears)
         return { ...yearList, allYears: [], message: "year list here" };

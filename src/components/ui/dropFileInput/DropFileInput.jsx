@@ -8,7 +8,7 @@ import { parseCsv } from "../../../actions/data";
 // utils
 // import { readCsv } from "../../helpers/utils.js";
 
-const DropFileInput = () => {
+const DropFileInput = ({ isWorldData = false }) => {
   const dispatch = useDispatch();
   const dropZoneOver = (event) => {
     event.preventDefault();
@@ -44,7 +44,8 @@ const DropFileInput = () => {
     // const data = await window.api.readCSV(input.files[0].path);
     // console.log(data);
     // console.log(readCsv(input.files[0]));
-    dispatch(parseCsv(input.files[0]));
+    // console.log(isWorldData);
+    dispatch(parseCsv(input.files[0], isWorldData));
   };
   return (
     <div className={classes.dropZoneWrapper}>
