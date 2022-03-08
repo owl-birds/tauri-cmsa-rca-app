@@ -8,6 +8,10 @@ import {
   ADD_YEAR_COUNTRY,
   DELETE_YEAR_COUNTRY,
   DELETE_YEAR_WORLD_DATA,
+  ADD_YEAR_WORLD_DATA,
+  ADD_ROW_WORLD_DATA,
+  EDIT_WORLD_DATA,
+  SELF_INPUT_DATA_WORLD,
 } from "../constants/actionTypes";
 
 const data = (data = [], action) => {
@@ -56,18 +60,39 @@ const data = (data = [], action) => {
       // console.log(action.newData);
       // return data;
       return { ...data, data: action.newData };
+    // WORLD
+    // SELF INPUt
+    case SELF_INPUT_DATA_WORLD:
+      return {
+        ...data,
+        worldData: action.payload,
+        isWorldDataLoaded: true,
+        isWorldSelfInput: true,
+        message: "SELF INPUT DATA COUNTRY",
+      };
+    // edit world
+    case EDIT_WORLD_DATA:
+      return { ...data, worldData: action.editedData };
+    // add world
+    case ADD_ROW_WORLD_DATA:
+      return { ...data, worldData: action.addedData };
+    case ADD_YEAR_WORLD_DATA:
+      return { ...data, worldData: action.newData };
     // DELETE
     case DELETE_YEAR_COUNTRY:
       return { ...data, data: action.editedData };
     case DELETE_YEAR_WORLD_DATA:
       return { ...data, worldData: action.editedData };
     default:
-      if (data.data)
+      if (
+        (data.data && data.data.length !== 0) ||
+        (data.worldData && data.worldData.length !== 0)
+      )
         // if data still exist
         return {
           ...data,
-          isLoaded: true,
-          isWorldDataLoaded: true,
+          // isLoaded: true,
+          // isWorldDataLoaded: true,
           message: "DEAFULT BUT DATA STILL EXIST",
         };
       else

@@ -110,6 +110,7 @@ const Table = ({
                           columnName={cell.column.Header}
                           value={cell.value}
                           data={data}
+                          isWorldData={isWorldData}
                         />
                       ) : (
                         cell.render("Cell")

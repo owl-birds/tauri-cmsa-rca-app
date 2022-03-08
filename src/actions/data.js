@@ -10,6 +10,10 @@ import {
   DELETE_YEAR_COUNTRY,
   REMOVE_YEAR_ALL_YEARS,
   DELETE_YEAR_WORLD_DATA,
+  ADD_YEAR_WORLD_DATA,
+  ADD_ROW_WORLD_DATA,
+  EDIT_WORLD_DATA,
+  SELF_INPUT_DATA_WORLD,
 } from "../constants/actionTypes";
 
 // helper functions
@@ -55,47 +59,57 @@ export const parseCsv =
     }
   };
 export const editData =
-  (data, index, columnName, editedValue) => async (dispatch) => {
+  (data, index, columnName, editedValue, isWorldData = false) =>
+  async (dispatch) => {
     try {
       const temp = await editCell(data, editedValue, index, columnName);
       // console.log(temp);
-      dispatch({ type: EDIT_DATA, editedData: temp });
+      // console.log(isWorldData);
+      if (!isWorldData) dispatch({ type: EDIT_DATA, editedData: temp });
+      else dispatch({ type: EDIT_WORLD_DATA, editedData: temp });
     } catch (error) {
       console.log(error);
     }
   };
 
 export const addingRow =
-  (data, isCountry = true) =>
+  (data, isWorldData = false) =>
   async (dispatch) => {
     try {
       const temp = await api.addingRow(data);
-      if (isCountry) dispatch({ type: ADD_ROW_COUNTRY, addedData: temp });
+      if (!isWorldData) dispatch({ type: ADD_ROW_COUNTRY, addedData: temp });
+      else dispatch({ type: ADD_ROW_WORLD_DATA, addedData: temp });
     } catch (error) {
       console.log(error);
     }
   };
 
 export const addingYearColumn =
-  (data, newYear, isCountry = true) =>
+  (data, newYear, isWorldData = false) =>
   async (dispatch) => {
     try {
       const temp = await addYearColumn(data, newYear);
       // console.log(temp);
-      if (isCountry) dispatch({ type: ADD_YEAR_COUNTRY, newData: temp });
+      if (!isWorldData) dispatch({ type: ADD_YEAR_COUNTRY, newData: temp });
+      else {
+        // console.log("WORLD DATA ADD YEAR", newYear);
+        dispatch({ type: ADD_YEAR_WORLD_DATA, newData: temp });
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
 export const selfInputData =
-  (cmsaType, isWorldData, isCommodity = true) =>
+  (cmsaType, isWorldData = false, isCommodity = true) =>
   async (dispatch) => {
     try {
       let data = [];
       if (!isWorldData) {
         if (cmsaType === 3) {
           console.log(cmsaType, "THREE", "action here");
+          const columns = ["country", "commodity", "region"];
+          data = await makeDataForSelfinput(columns);
         } else if (cmsaType === 2) {
           console.log(cmsaType, "TWO", "action here");
           if (isCommodity) {
@@ -113,6 +127,11 @@ export const selfInputData =
           console.log(cmsaType, "ONE", "action here");
         }
         dispatch({ type: SELF_INPUT_DATA_COUNTRY, payload: data });
+      } else {
+        const columns = ["commodity"];
+        data = await makeDataForSelfinput(columns);
+        // console.log(data);
+        dispatch({ type: SELF_INPUT_DATA_WORLD, payload: data });
       }
     } catch (error) {
       console.log(error);

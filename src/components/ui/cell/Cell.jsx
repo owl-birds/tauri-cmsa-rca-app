@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 // actions
 import { editData } from "../../../actions/data";
 // import { EDIT_DATA } from "../../constants/actionTypes";
-const Cell = ({ data, value, index, columnName }) => {
+const Cell = ({ data, value, index, columnName, isWorldData = false }) => {
   //   VAR
   // FOR THE CELL ID IMPORTANT (UNIQUE)
   //   STATE
@@ -39,7 +39,9 @@ const Cell = ({ data, value, index, columnName }) => {
 
             // GOING INTO ACTIONS TO EDIT THE CELL
             const editedValue = inputRef.current.value;
-            dispatch(editData(data, index, columnName, editedValue));
+            dispatch(
+              editData(data, index, columnName, editedValue, isWorldData)
+            );
           }
         }
         clickToReadMode();

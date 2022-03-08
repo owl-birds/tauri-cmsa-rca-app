@@ -11,14 +11,15 @@ import {
 import { addingRow, addingYearColumn } from "../../../actions/data";
 // utils
 import { uniqueYear } from "../../../helpers/utils";
-const TableMenu = ({ data, isWorldData = false }) => {
+const TableMenu = ({ data, isWorldData = false, menuTitle = "Table Menu" }) => {
+  // console.log(menuTitle);
   const dispatch = useDispatch();
   const resetHandler = () => {
     dispatch({ type: CLEAR_STATE });
     dispatch({ type: RESET_YEARS });
   };
   const addARow = () => {
-    dispatch(addingRow(data));
+    dispatch(addingRow(data, isWorldData));
   };
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -32,12 +33,12 @@ const TableMenu = ({ data, isWorldData = false }) => {
       newYearCol.classList.remove(classes.wrongInput);
       // console.log(newYearCol.value);
       dispatch({ type: ALL_YEARS, allYears: newYearCol.value });
-      dispatch(addingYearColumn(data, newYearCol.value));
+      dispatch(addingYearColumn(data, newYearCol.value, isWorldData));
     }
   };
   return (
     <div className={classes.addingMenu}>
-      <h4 className={classes.h4}>Table Menu</h4>
+      <h4 className={classes.h4}>{menuTitle}</h4>
       <button className={classes.btn} onClick={() => resetHandler()}>
         Reset Data
       </button>

@@ -9,6 +9,7 @@
 .dataInputBox {
   display: grid;
   justify-content: center;
+  gap: 1rem;
 }
 .dataInputTitle {
   text-align: center;

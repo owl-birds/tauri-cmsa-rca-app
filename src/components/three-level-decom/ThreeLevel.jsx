@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 
 // COMPONENTS
 import InputTypeSelectionMenu from "../ui/InputTypeSelectionMenu";
-import Table from "../ui/table/Table";
+import Table from "../ui/table/Table/";
+import TableMenu from "../ui/TableMenu/";
 
 const ThreeLevel = () => {
   const state = useSelector((state) => state.data);
@@ -17,11 +18,18 @@ const ThreeLevel = () => {
       </div>
       <div className={classes.dataInputBox}>
         {state.isLoaded ? (
-          <Table
-            data={state.data}
-            columns={state.data.columns}
-            isEditAble={true}
-          />
+          <>
+            <TableMenu
+              data={state.data}
+              menuTitle={"Country Table"}
+              isWorldData={false}
+            />
+            <Table
+              data={state.data}
+              columns={state.data.columns}
+              isEditAble={true}
+            />
+          </>
         ) : (
           <>
             <h4 className={classes.dataInputTitle}>Country data</h4>
@@ -29,12 +37,19 @@ const ThreeLevel = () => {
           </>
         )}
         {state.isWorldDataLoaded ? (
-          <Table
-            data={state.worldData}
-            columns={state.worldData.columns}
-            isEditAble={true}
-            isWorldData={true}
-          />
+          <>
+            <TableMenu
+              data={state.worldData}
+              menuTitle={"World Table"}
+              isWorldData={true}
+            />
+            <Table
+              data={state.worldData}
+              columns={state.worldData.columns}
+              isEditAble={true}
+              isWorldData={true}
+            />
+          </>
         ) : (
           <>
             <h4 className={classes.dataInputTitle}>World data</h4>
