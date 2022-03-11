@@ -139,7 +139,7 @@ export const selfInputData =
   };
 
 export const deleteColYear =
-  (data, year, isWorldData, isSelfInput = false) =>
+  (data, year, isWorldData = false, isSelfInput = false) =>
   async (dispatch) => {
     try {
       if (!isWorldData) {

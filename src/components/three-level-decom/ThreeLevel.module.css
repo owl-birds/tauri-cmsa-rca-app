@@ -14,3 +14,7 @@
 .dataInputTitle {
   text-align: center;
 }
+.optionOutputBox {
+  display: grid;
+  justify-items: center;
+}

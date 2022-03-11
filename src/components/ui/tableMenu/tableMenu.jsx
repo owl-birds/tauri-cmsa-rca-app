@@ -32,7 +32,10 @@ const TableMenu = ({ data, isWorldData = false, menuTitle = "Table Menu" }) => {
     } else {
       newYearCol.classList.remove(classes.wrongInput);
       // console.log(newYearCol.value);
-      dispatch({ type: ALL_YEARS, allYears: newYearCol.value });
+      // console.log("menu", isWorldData);
+      if (!isWorldData) {
+        dispatch({ type: ALL_YEARS, allYears: newYearCol.value });
+      }
       dispatch(addingYearColumn(data, newYearCol.value, isWorldData));
     }
   };
