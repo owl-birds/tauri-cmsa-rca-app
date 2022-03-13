@@ -1,0 +1,35 @@
+.buttonBox {
+  margin-top: 30px;
+  display: grid;
+  /* grid-auto-flow: column; */
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+  gap: 1rem;
+}
+.button {
+  color: rgb(51, 51, 51);
+  background-color: #fff;
+  font-weight: 900;
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  border: solid 0.5px rgb(204, 196, 196);
+  justify-self: center;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.button:hover {
+  transition: 0.6s;
+  color: rgb(54, 6, 109);
+  border-color: rgb(54, 6, 109);
+  cursor: pointer;
+}
+.inputTypetitle {
+  text-align: center;
+}
+.center {
+  text-align: center;
+}

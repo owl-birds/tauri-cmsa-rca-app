@@ -54,13 +54,16 @@ const ThreeLevel = () => {
               data={state.data}
               menuTitle={"Country Table"}
               isWorldData={false}
-            />
-            <Table
-              data={state.data}
-              columns={state.data.columns}
-              isEditAble={true}
               isSelfInput={state.isSelfInput}
             />
+            <div className={classes.table}>
+              <Table
+                data={state.data}
+                columns={state.data.columns}
+                isEditAble={true}
+                isSelfInput={state.isSelfInput}
+              />
+            </div>
           </>
         ) : (
           <>
@@ -74,13 +77,16 @@ const ThreeLevel = () => {
               data={state.worldData}
               menuTitle={"World Table"}
               isWorldData={true}
+              isSelfInput={state.isWorldSelfInput}
             />
-            <Table
-              data={state.worldData}
-              columns={state.worldData.columns}
-              isEditAble={true}
-              isWorldData={true}
-            />
+            <div className={classes.table}>
+              <Table
+                data={state.worldData}
+                columns={state.worldData.columns}
+                isEditAble={true}
+                isWorldData={true}
+              />
+            </div>
           </>
         ) : (
           <>

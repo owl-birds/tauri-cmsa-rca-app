@@ -101,7 +101,13 @@ export const addingYearColumn =
   };
 
 export const selfInputData =
-  (cmsaType, isWorldData = false, isCommodity = true) =>
+  (
+    cmsaType,
+    isWorldData = false,
+    isCommodity = true,
+    isRca = false,
+    isOneCountry = 0
+  ) =>
   async (dispatch) => {
     try {
       let data = [];
@@ -125,6 +131,14 @@ export const selfInputData =
           const columns = ["country"];
           data = await makeDataForSelfinput(columns);
           console.log(cmsaType, "ONE", "action here");
+        } else if (isRca) {
+          if (isOneCountry === 1) {
+            const columns = ["commodity"];
+            data = await makeDataForSelfinput(columns);
+          } else if (isOneCountry === 2) {
+            const columns = ["commodity", "country"];
+            data = await makeDataForSelfinput(columns);
+          }
         }
         dispatch({ type: SELF_INPUT_DATA_COUNTRY, payload: data });
       } else {

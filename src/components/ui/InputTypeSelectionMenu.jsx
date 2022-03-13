@@ -14,7 +14,10 @@ const InputTypeSelectionMenu = ({
   cmsaType,
   isWorldData = false,
   isLevelTwo = false,
+  isRca = false,
+  isOneCountry = 0,
 }) => {
+  // console.log("inputType is One Country : ", isOneCountry);
   // REDUX STUFFS
   const dispatch = useDispatch();
   const [isMenu, setIsMenu] = useState(true);
@@ -33,7 +36,10 @@ const InputTypeSelectionMenu = ({
     setInputType(false);
   };
   const selfInput = () => {
-    if (!isLevelTwo) dispatch(selfInputData(cmsaType, isWorldData));
+    if (!isLevelTwo)
+      dispatch(
+        selfInputData(cmsaType, isWorldData, false, isRca, isOneCountry)
+      );
     setMenu(false);
     setInputType(true);
   };

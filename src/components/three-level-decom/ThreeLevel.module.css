@@ -18,3 +18,7 @@
   display: grid;
   justify-items: center;
 }
+.table {
+  display: grid;
+  justify-content: center;
+}

@@ -1,5 +1,5 @@
 import classes from "./Select.module.css";
-const Select = ({ optionList, selectRef, label, onChange }) => {
+const Select = ({ optionList, selectRef, label, onChange = () => {} }) => {
   // console.log("Select Components");
   // console.log(optionList);
   // optionList.sort((a, b) => a < b);

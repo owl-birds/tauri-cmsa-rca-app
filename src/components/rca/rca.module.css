@@ -1,7 +1,19 @@
 .contents {
-  height: 100%;
+  padding-bottom: 50px;
 }
 .title {
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 20px;
+}
+.tableBox {
+  display: grid;
+  justify-content: center;
+}
+.textCenter {
+  text-align: center;
+}
+.table {
+  display: grid;
+  justify-content: center;
 }
