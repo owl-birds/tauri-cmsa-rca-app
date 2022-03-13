@@ -33,7 +33,11 @@
 .link:hover {
   color: rgb(54, 6, 109);
 }
-/* HOME NAV */
+/* HOME NAV cmsa */
+.cmsaNavTitle {
+  text-align: center;
+  margin-top: 10px;
+}
 .homeNav {
   margin-top: 20px;
   display: grid;

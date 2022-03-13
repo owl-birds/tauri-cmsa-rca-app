@@ -11,7 +11,12 @@ import {
 import { addingRow, addingYearColumn } from "../../../actions/data";
 // utils
 import { uniqueYear } from "../../../helpers/utils";
-const TableMenu = ({ data, isWorldData = false, menuTitle = "Table Menu" }) => {
+const TableMenu = ({
+  data,
+  isWorldData = false,
+  menuTitle = "Table Menu",
+  isSelfInput = false,
+}) => {
   // console.log(menuTitle);
   const dispatch = useDispatch();
   const resetHandler = () => {
@@ -33,7 +38,7 @@ const TableMenu = ({ data, isWorldData = false, menuTitle = "Table Menu" }) => {
       newYearCol.classList.remove(classes.wrongInput);
       // console.log(newYearCol.value);
       // console.log("menu", isWorldData);
-      if (!isWorldData) {
+      if (!isWorldData && isSelfInput) {
         dispatch({ type: ALL_YEARS, allYears: newYearCol.value });
       }
       dispatch(addingYearColumn(data, newYearCol.value, isWorldData));

@@ -70,7 +70,7 @@ const TwoLevel = () => {
       </div>
       {state.isLoaded ? (
         <div className={classes.tableWrapper}>
-          <TableMenu data={state.data} />
+          <TableMenu data={state.data} isSelfInput={state.isSelfInput} />
           <Table
             isEditAble={true}
             columns={state.data.columns}
