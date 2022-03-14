@@ -22,11 +22,11 @@ const RcaNav = () => {
   };
   const setOneCountry = () => {
     setIsOneCountry(() => 1);
-    dispatch({ type: RCA_IS_ONE_COUNTRY, isOneCountry: true });
+    dispatch({ type: RCA_IS_ONE_COUNTRY, isOneCountry: 1 });
   };
   const setMultipleCountry = () => {
     setIsOneCountry(() => 2);
-    dispatch({ type: RCA_IS_ONE_COUNTRY, isOneCountry: false });
+    dispatch({ type: RCA_IS_ONE_COUNTRY, isOneCountry: 2 });
   };
   // console.log("is One Country : ", isOneCountry);
   return (
@@ -53,12 +53,12 @@ const RcaNav = () => {
           </button>
         </div>
       )}
-      {isOneCountry === 1 ? (
+      {/* {isOneCountry === 1 ? (
         <h2 className={classes.center}>One Country</h2>
       ) : null}
       {isOneCountry === 2 ? (
         <h2 className={classes.center}>Multiple Country</h2>
-      ) : null}
+      ) : null} */}
       {isMenuSelected ? (
         isLoaded ? null : (
           <>

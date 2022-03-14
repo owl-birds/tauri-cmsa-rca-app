@@ -1,4 +1,4 @@
-export const uniqueRow = (data, colName) => {
+export const uniqueRow = (data, colName, excludedCol = "") => {
   const temp = [];
   // const isColumnExist = data.columns.some((column) => column === colName);
   // if (!isColumnExist) return -1;
@@ -8,7 +8,11 @@ export const uniqueRow = (data, colName) => {
     );
     if (!isExist) temp.push(row[colName].trim().toLowerCase());
   }
-  return temp;
+  if (excludedCol === "") {
+    return temp;
+  } else {
+    return temp.filter((element) => element !== excludedCol);
+  }
 };
 export const round = (num) => {
   return +(Math.round(num + "e+2") + "e-2");

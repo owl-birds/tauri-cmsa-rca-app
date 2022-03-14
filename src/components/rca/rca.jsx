@@ -10,9 +10,10 @@ import RcaNav from "../ui/rcaNav/";
 import Table from "../ui/table/";
 import TableMenu from "../ui/tableMenu/";
 import RcaCalcMenu from "../ui/rcaCalcMenu";
+import MultipleRcaOutput from "../ui/multipleRcaOutput/";
 
 // utils
-import { uniqueYear } from "../../helpers/utils";
+import { uniqueYear, uniqueRow } from "../../helpers/utils";
 import { calcRca_all, calcRca_all_countries } from "../../helpers/rca";
 
 const Rca = () => {
@@ -38,7 +39,7 @@ const Rca = () => {
   const rcaResult =
     state.isLoaded && state.isWorldDataLoaded
       ? ui.isOptionSelected
-        ? ui.isOneCountry
+        ? ui.isOneCountry === 1
           ? calcRca_all(state.data, state.worldData, ui.yearSelected)
           : calcRca_all_countries(state.data, state.worldData, ui.yearSelected)
         : null
@@ -47,6 +48,13 @@ const Rca = () => {
   return (
     <main className={classes.contents}>
       <h1 className={classes.title}>RCA</h1>
+      {ui.isOneCountry ? (
+        ui.isOneCountry === 1 ? (
+          <h3 className={classes.textCenter}>One Country</h3>
+        ) : (
+          <h3 className={classes.textCenter}>Multiple Country</h3>
+        )
+      ) : null}
       {state.isLoaded ? (
         <div className={classes.tableBox}>
           <TableMenu
@@ -87,13 +95,16 @@ const Rca = () => {
       ) : (
         <RcaNav />
       )}
-      {rcaResult ? (
-        ui.isOneCountry ? (
+      {rcaResult && ui.isOptionSelected ? (
+        ui.isOneCountry === 1 ? (
           <div className={classes.table}>
             <Table data={rcaResult} columns={rcaResult.columns} />
           </div>
         ) : (
-          <div>SIKE</div>
+          <MultipleRcaOutput
+            countriesList={uniqueRow(state.data, "country", "dunia")}
+            data={rcaResult ? rcaResult : []}
+          />
         )
       ) : null}
     </main>
