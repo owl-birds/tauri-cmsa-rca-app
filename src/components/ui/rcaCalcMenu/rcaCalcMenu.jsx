@@ -12,12 +12,15 @@ import { OPTIONS_UI_RCA } from "../../../constants/actionTypes";
 // COMPONENTS
 import Select from "../Select";
 
+// utils
+import { sortingNumArr } from "../../../helpers/utils";
+
 const RcaCalcMenu = ({ yearList }) => {
   //   console.log("RCA CALC MENU HERE : ", yearList);
   // Redux
   const dispatch = useDispatch();
   // REF
-  const selectedYearRef = useRef();
+  const selectedYearRef = useRef(null);
   //   console.log("rca menu selected year", selectedYearRef.current.value);
   const onSubmit = (event) => {
     event.preventDefault();
@@ -31,7 +34,7 @@ const RcaCalcMenu = ({ yearList }) => {
     <section className={classes.menu}>
       <form className={classes.form} onSubmit={onSubmit}>
         <Select
-          optionList={yearList}
+          optionList={sortingNumArr(yearList)}
           label={"Pilih tahun"}
           selectRef={selectedYearRef}
         />
